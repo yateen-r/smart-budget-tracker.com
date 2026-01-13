@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Budget Tracker</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Smart Budget Tracker</h1>
+            <button id="themeToggle" class="theme-toggle">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="moon"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="sun"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+            </button>
+        </header>
+
+        <div class="dashboard">
+            <div class="balance-card">
+                <h2>Current Balance</h2>
+                <p id="totalBalance">$0.00</p>
+            </div>
+            <div class="summary-card">
+                <div class="income-summary">
+                    <h3>Total Income</h3>
+                    <p id="totalIncome">$0.00</p>
+                </div>
+                <div class="expense-summary">
+                    <h3>Total Expenses</h3>
+                    <p id="totalExpenses">$0.00</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="main-content">
+            <div class="transactions-section">
+                <div class="add-transaction">
+                    <h2>Add Transaction</h2>
+                    <form id="transactionForm">
+                        <div class="form-group">
+                            <label for="description">Description</label>
+                            <input type="text" id="description" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="amount">Amount</label>
+                            <input type="number" id="amount" min="0" step="0.01" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="type">Type</label>
+                            <select id="type" required>
+                                <option value="income">Income</option>
+                                <option value="expense">Expense</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="category">Category</label>
+                            <select id="category" required>
+                                <option value="">Select Category</option>
+                                <option value="groceries">Groceries</option>
+                                <option value="entertainment">Entertainment</option>
+                                <option value="utilities">Utilities</option>
+                                <option value="transportation">Transportation</option>
+                                <option value="healthcare">Healthcare</option>
+                                <option value="custom">Add Custom Category</option>
+                            </select>
+                        </div>
+                        <div class="form-group" id="customCategoryGroup" style="display: none;">
+                            <label for="customCategory">Custom Category Name</label>
+                            <input type="text" id="customCategory">
+                        </div>
+                        <button type="submit" class="btn-primary">Add Transaction</button>
+                    </form>
+                </div>
+
+                <div class="recent-transactions">
+                    <h2>Recent Transactions</h2>
+                    <div id="transactionsList" class="transactions-list"></div>
+                </div>
+            </div>
+
+            <div class="charts-section">
+                <div class="chart-container">
+                    <h2>Expense Distribution</h2>
+                    <canvas id="expenseChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
